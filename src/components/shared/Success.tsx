@@ -2,8 +2,6 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-const COUNTDOWN_TIME = 5000; // 3 seconds
-
 const registration = {
   title: "We have received your request!",
   desc: "Admin will be checking your request. Please wait for the confirmation email. Thank you!",
@@ -22,7 +20,7 @@ export default function Success({ type }: { type: string }) {
       if (type === "login") {
         router.push("/dashboard");
       }
-    }, COUNTDOWN_TIME);
+    }, 4500);
     const timer = setInterval(() => {
       setCountdown((prevCount) => {
         if (prevCount === 1) {

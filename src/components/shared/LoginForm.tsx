@@ -2,7 +2,6 @@
 
 import { getEmail, login } from "@/actions/user.actions";
 import { Button } from "@/components/ui/button";
-import { comparePassword } from "@/lib/hashing";
 import {
   Card,
   CardContent,
@@ -17,6 +16,7 @@ import { Eye, EyeOff, Loader, MountainIcon } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import Success from "./Success";
+import { loginCookie } from "@/lib/cookie";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
@@ -47,7 +47,6 @@ export default function LoginForm() {
     setLoading(true);
 
     const checkEmail = await getEmail(email);
-    console.log(checkEmail);
     if (!checkEmail) {
       setError("Email doesn't exists. Please Register.");
       setLoading(false);
@@ -61,6 +60,7 @@ export default function LoginForm() {
     const res = await login(email, password);
     setLoading(false);
     if (res) {
+      loginCookie(email, checkEmail.name);
       setSuccess(true);
     } else {
       setError("Password is incorrect. Please try again.");

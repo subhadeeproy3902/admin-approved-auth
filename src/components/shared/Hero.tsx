@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Github, ArrowRight, Zap, Shield, Code } from "lucide-react";
@@ -6,7 +8,7 @@ import { buttonVariants } from "@/components/ui/button";
 
 const MotionLink = motion(Link);
 
-const Hero = () => {
+export default function Hero({ loggedIn }: { loggedIn: boolean }) {
   return (
     <div className="relative z-10 mt-5 lg:mt-0 p-4">
       <section className="container min-h-screen flex flex-col justify-center items-center gap-8 pb-8 pt-6 md:py-10">
@@ -43,7 +45,7 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.8 }}
         >
           <MotionLink
-            href="/register"
+            href={loggedIn ? "/dashboard" : "/register"}
             className={
               buttonVariants({ size: "lg", variant: "default" }) +
               " bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-semibold px-8 py-4 rounded-full"
@@ -107,6 +109,4 @@ const Hero = () => {
       </section>
     </div>
   );
-};
-
-export default Hero;
+}
