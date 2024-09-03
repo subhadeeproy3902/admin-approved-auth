@@ -2,7 +2,7 @@ import { getEmail, notApprovedUsers } from "@/actions/user.actions";
 import AdminCrud from "@/components/shared/AdminCrud";
 import { getSession } from "@/lib/cookie";
 import { MoveRight } from "lucide-react";
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 function parseJwt(token: string) {
   try {
@@ -31,18 +31,19 @@ export default async function Dashboard() {
         Your role is: <span className="text-blue-500">{checkEmail?.role}</span>
       </p>
 
-      <h1 className="text-2xl font-semibold leading-none tracking-tight flex justify-start gap-4 items-center">
-        Pending Approvals <MoveRight size={24} />
-      </h1>
-
       {checkEmail?.role === "ADMIN" && (
-        <div>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {pendingUsers.map((user) => (
-              <AdminCrud key={user.id} user={user} />
-            ))}
+        <>
+          <h1 className="text-2xl font-semibold leading-none tracking-tight flex justify-start gap-4 items-center">
+            Pending Approvals <MoveRight size={24} />
+          </h1>
+          <div>
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {pendingUsers.map((user) => (
+                <AdminCrud key={user.id} user={user} />
+              ))}
+            </div>
           </div>
-        </div>
+        </>
       )}
     </main>
   );
