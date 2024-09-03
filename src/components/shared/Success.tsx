@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { Button } from "../ui/button";
 
 const registration = {
   title: "We have received your request!",
@@ -59,16 +60,19 @@ export default function Success({ type }: { type: string }) {
             {" "}
             {type === "login" ? login.desc : registration.desc}{" "}
           </div>
-          <Link
-            href="/"
-            className="p-2.5 px-8 w-full text-center items-center bg-primary text-primary-foreground hover:bg-primary/90 rounded-md outline-none "
-          >
-            {type === "login" ? (
-              <>Redirecting in... {countdown === 0 ? "0" : countdown}</>
-            ) : (
-              "Go Home"
-            )}
-          </Link>
+          {type === "login" && (
+            <Button className="p-2.5 px-8 w-full text-center items-center bg-primary text-primary-foreground hover:bg-primary/90 rounded-md outline-none ">
+              Redirecting in... {countdown === 0 ? "0" : countdown}
+            </Button>
+          )}
+          {type === "register" && (
+            <Link
+              href="/"
+              className="p-2.5 px-8 w-full text-center items-center bg-primary text-primary-foreground hover:bg-primary/90 rounded-md outline-none"
+            >
+              Go Home
+            </Link>
+          )}
         </div>
       </div>
     </>

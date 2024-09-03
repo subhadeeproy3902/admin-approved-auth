@@ -73,3 +73,13 @@ export async function login(email: string, password: string) {
     return null;
   }
 }
+
+export async function notApprovedUsers() {
+  const users = await db.user.findMany({
+    where: {
+      isRegistered: false,
+    },
+  });
+
+  return users;
+}

@@ -15,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
     return (
-      <html lang="en">
+      <html lang="en" suppressHydrationWarning>
         <body className={inter.className}>
           <div className="relative min-h-screen overflow-hidden text-white flex justify-center items-center xl:h-screen">
             <div className="absolute -z-10 inset-0 overflow-hidden">
